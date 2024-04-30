@@ -7,7 +7,6 @@ An example LINE bot just to echo messages written in CommonJS.
 ### Install deps
 
 ``` shell
-$ npm build-sdk
 $ npm install
 ```
 
