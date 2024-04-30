@@ -4,7 +4,7 @@
   "description": "An example LINE bot just to echo messages written in CommonJS",
   "main": "index.js",
   "scripts": {
-    "start": "node --watch ."
+    "start": "node --watch ./bin/www"
   },
   "dependencies": {
     "@line/bot-sdk": "^9.2.0",

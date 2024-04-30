@@ -1,39 +1,24 @@
 "use strict";
 
 require("dotenv").config();
-const line = require("@line/bot-sdk");
 const express = require("express");
 const path = require('path');
-const session = require("express-session");
 const cookieParser = require("cookie-parser");
-const helmet = require('helmet');
-const passport = require('passport');
 const logger = require('morgan');
+const line = require("@line/bot-sdk");
+const session = require("express-session");
+const passport = require('passport');
+const helmet = require('helmet');
 
 const lineRouter = require('./routes/line');
 const usersRouter = require('./routes/users');
 const indexRouter = require('./routes/index');
 
-
-const accessToken = process.env.CHANNEL_ACCESS_TOKEN;
-// create LINE SDK config from env variables
-const config = {
-  channelSecret: process.env.CHANNEL_SECRET,
-};
-
-// create LINE SDK client
-const client = new line.messagingApi.MessagingApiClient({
-  channelAccessToken: accessToken,
-});
-const blobClient = new line.messagingApi.MessagingApiBlobClient({
-  channelAccessToken: accessToken,
-});
-
-// create Express app
-// about Express itself: https://expressjs.com/
 const app = express();
 
-app.use('/line/callback', line.middleware(config), lineRouter);
+app.use('/line/callback', line.middleware({
+  channelSecret: process.env.CHANNEL_SECRET,
+}), lineRouter);
 
 app.use(helmet(
   {
@@ -76,11 +61,5 @@ app.get('/login/line/return',
   function (req, res) {
     res.redirect('/');
   });
-// register a webhook handler with middleware
-// about the middleware, please refer to doc
 
-// listen on port
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`listening on ${port}`);
-});
+module.exports = app
