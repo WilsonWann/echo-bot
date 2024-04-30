@@ -1,0 +1,25 @@
+{
+  "name": "echo-bot",
+  "version": "0.0.0",
+  "description": "An example LINE bot just to echo messages written in CommonJS",
+  "main": "index.js",
+  "scripts": {
+    "build-sdk": "cd ../../ && npm i && npm run build",
+    "start": "node --watch ."
+  },
+  "dependencies": {
+    "@line/bot-sdk": "../../",
+    "axios": "^1.6.8",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.17.3",
+    "express-session": "^1.18.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "passport": "^0.7.0",
+    "passport-line-auth": "^0.2.9",
+    "request": "^2.88.2"
+  }
+}
